@@ -13,8 +13,10 @@ def hello():
 def get_compliance():
     try:
         req_body = request.get_json()
+        reference_file = req_body['referenceFile']
+        user_training_file = req_body('userTrainingFile')
         
-        final_df = ac.compute_compliance()
+        final_df = ac.compute_compliance(reference_file, user_training_file)
         
         # Convert DataFrame to JSON string
         json_data = final_df.to_json(orient='records')
