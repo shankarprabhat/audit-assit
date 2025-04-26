@@ -5,3 +5,4 @@
 *.xlsx
 uploads*
 .vercel
+__pycache__*
