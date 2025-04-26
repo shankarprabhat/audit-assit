@@ -3,6 +3,4 @@ flask_cors
 requests
 pandas	
 openpyxl
-camelot-py[base]
 pypdf2
-ghostscript
