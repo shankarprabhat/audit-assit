@@ -16,7 +16,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 async def upload_with_json(request):
     
-    print('in upload with json request: ', request.form)
+    print('in upload with json request given: ', request.form)
     print('request form: ', request.form['project'])
     print('files: ', request.files)
     if 'project' not in request.form:
