@@ -6,13 +6,22 @@ import json
 from werkzeug.utils import secure_filename
 import traceback
 import asyncio
+import tempfile
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
     
 app = Flask(__name__)
-UPLOAD_FOLDER = 'uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# Use /tmp on Vercel, 'uploads' locally
+if 'VERCEL' in os.environ:
+    UPLOAD_FOLDER = tempfile.gettempdir()
+    print("Running on Vercel, UPLOAD_FOLDER is:", UPLOAD_FOLDER)
+else:
+    UPLOAD_FOLDER = 'uploads'
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    print("Running locally, UPLOAD_FOLDER is:", UPLOAD_FOLDER)
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 async def upload_with_json(request):
